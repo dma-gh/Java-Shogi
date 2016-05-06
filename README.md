@@ -1,4 +1,4 @@
-#Shogi-Game
+#Shogi
 AP Computer Science Final Project - Japanese Chess Game - David Allen<br>
 A Graphical Shogi (Japanese Chess) Game
 ##Implementation Details:
