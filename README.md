@@ -3,7 +3,9 @@ AP Computer Science Final Project - Japanese Chess Game - David Allen<br>
 A Graphical Shogi (Japanese Chess) Game
 ##Implementation Details:
 <ul>
-	<li>
+	<li>Two-Player
+	<li>The Game will detect if a move is valid
+	<li>The Game will detect if the game has been won
 </ul>
 ##Code Details:
 <ul>
