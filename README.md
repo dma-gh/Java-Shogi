@@ -6,5 +6,7 @@ A Graphical Shogi (Japanese Chess) Game
 	<li>Manages the Board through a two-dimensional array object
 </ul>
 ##Code Details:
-
+<ul>
+	<li>Makes liberal use of classes
+</ul>
 
