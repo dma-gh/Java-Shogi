@@ -1,1 +1,6 @@
-//Runner File
+public class Shogi {
+	
+	public static void main(String[] args) {
+		System.out.println("Hello world");
+	}
+}
