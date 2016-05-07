@@ -13,13 +13,19 @@ public class Board {
 			board[2][i].setPiece(new Pawn(1));
 			board[6][i].setPiece(new Pawn(2));
 		}
+		//Add Lances to initial setup
+			board[0][0].setPiece(new Lance(1));
+			board[0][8].setPiece(new Lance(1));
+			board[8][0].setPiece(new Lance(2));
+			board[8][8].setPiece(new Lance(2));
 	}
 	
 	public void movePiece(Square from, Square to) {
 		Piece fromPiece = from.getPiece();
-		if(fromPiece.canMove(from, to)) {
+		if(fromPiece.canMove(from, to, this)) {
 			if(to.getPiece() == null) {
 				from.setPiece(null);
+				to.setPiece(null);
 				to.setPiece(fromPiece);
 			}
 		}

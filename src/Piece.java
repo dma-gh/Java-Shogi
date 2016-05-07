@@ -16,7 +16,7 @@ public interface Piece {
 	 * @param to Square to move to
 	 * @return Returns true if move is valid
 	 */
-	public boolean canMove(Square from, Square to);
+	public boolean canMove(Square from, Square to, Board b);
 	/**
 	 * @param owner Player 1 or 2
 	 */

@@ -7,5 +7,7 @@ public class Shogi {
 		System.out.println(b.toString());
 		b.movePiece(b.getSquare(6, 0), b.getSquare(5, 0));
 		System.out.println(b.toString());
+		b.movePiece(b.getSquare(8, 0), b.getSquare(6, 0));
+		System.out.println(b.toString());
 	}
 }

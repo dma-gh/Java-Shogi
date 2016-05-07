@@ -8,7 +8,7 @@ public class Pawn implements Piece {
 		
 	}
 	
-	public boolean canMove(Square from, Square to) {
+	public boolean canMove(Square from, Square to, Board b) {
 		//Pawn Basic Move
 		if(owner == 1 && from.getR() - to.getR() == -1 ||
 				owner == 2 && from.getR() - to.getR() == 1) {
