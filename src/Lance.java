@@ -5,7 +5,10 @@ public class Lance implements Piece{
 	private int owner;
 	
 	public boolean canMove(Square from, Square to) {
-		return true;
+		if(from.getR() == to.getR()) {
+			return true;
+		}
+		return false;
 	}
 	
 	public Lance(int owner) {
