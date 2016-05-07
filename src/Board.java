@@ -10,16 +10,19 @@ public class Board {
 		}
 		//Add Pawns to initial setup
 		for(int i = 0; i < 9;i++) {
-			board[2][i].setPiece(new Pawn());
-			board[6][i].setPiece(new Pawn());
+			board[2][i].setPiece(new Pawn(1));
+			board[6][i].setPiece(new Pawn(2));
 		}
 	}
 	
 	public void movePiece(Square from, Square to) {
 		Piece fromPiece = from.getPiece();
-		// if(fromPiece.canMove())
-		from.setPiece(null);
-		to.setPiece(fromPiece);
+		if(fromPiece.canMove(from, to)) {
+			if(to.getPiece() == null) {
+				from.setPiece(null);
+				to.setPiece(fromPiece);
+			}
+		}
 	}
 	
 	public Square getSquare(int r, int c) {
