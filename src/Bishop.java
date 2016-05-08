@@ -7,17 +7,12 @@ public class Bishop implements Piece {
 	public boolean canMove(Square from, Square to, Board b) {
 
 		if(Math.abs(from.getR() - to.getR()) == Math.abs(from.getC() - to.getC())) {
-
-			//Bishop is moving left and up
-			if(from.getC() - to.getC() > 0) {
-				//Loop through squares above and to the left
-				for(int r = from.getR() + 1;r<to.getR()-1;r++) {
-					for(int c = from.getC() - 1;c>to.getC();c--) {
-						//if square contains piece, return false
-						if(b.getSquare(r, c).getPiece() != null) {
-							return false;
-						}
-					}
+			//Check if moving left or right, up or down
+			int dirC = to.getC()>from.getC() ? 1 : -1;
+			int dirR = to.getR()>from.getR() ? 1 : -1;
+			for (int i=1;i<Math.abs(to.getC()-from.getC());i++) {
+				if (b.getSquare(from.getR()+i*dirR,from.getC()+i*dirC).getPiece() != null) {
+					return false;
 				}
 			}
 
