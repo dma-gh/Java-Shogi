@@ -7,6 +7,7 @@ public class Lance implements Piece {
 	public boolean canMove(Square from, Square to, Board b) {
 			//Check for collision and row violation if moving up 
 			if(owner == 1 && from.getC() == to.getC()) {
+				//Check squares between old and new position for pieces
 				for(int i=from.getR() + 1;i<to.getR();i++) {
 					if(b.getSquare(i, from.getC()).getPiece() != null) {
 						return false;
@@ -15,6 +16,7 @@ public class Lance implements Piece {
 			}
 			//Check for collision and row violation if moving down 	
 			if(owner == 2 && from.getC() == to.getC()) {
+				//Check squares between old and new position for pieces
 				for(int i=from.getR() - 1;i>to.getR();i--) {
 					if(b.getSquare(i, from.getC()).getPiece() != null) {
 						return false;
