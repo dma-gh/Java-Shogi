@@ -6,15 +6,15 @@ public class Knight implements Piece {
 
 	public boolean canMove(Square from, Square to, Board b) {
 			if(owner == 2) {
-				//Check if moving up 
-				if(from.getR() - to.getR() > 0) {
-					
+				//Check if moving up two squares
+				if(from.getR() - to.getR() != 2 || Math.abs(from.getC() - to.getC()) != 1) {
+					return false;
 				}
 			}
 			if(owner == 1) {
-				//Check if moving down 	
-				if(from.getR() - to.getR() < 0 && from.getC() == to.getC()) {
-					
+				//Check if moving down two squares
+				if(from.getR() - to.getR() != -2 || Math.abs(from.getC() - to.getC()) != 1) {
+					return false;
 				}
 			}
 
