@@ -39,6 +39,9 @@ public class Board {
 		//Add Rooks to initial setup
 			board[1][1].setPiece(new Rook(1));
 			board[7][7].setPiece(new Rook(2));
+		//Added Bishops to initial setup
+			board[1][7].setPiece(new Bishop(1));
+			board[7][1].setPiece(new Bishop(2));
 	}
 	
 	public void movePiece(Square from, Square to) throws Exception {
