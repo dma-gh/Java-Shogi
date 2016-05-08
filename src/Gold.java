@@ -9,14 +9,14 @@ public class Gold implements Piece {
 				(Math.abs(from.getC() - to.getC()) <= 1))) {
 			if(owner == 1) {
 				//If Piece is moving backwards check for diagonal
-				if(from.getR() - to.getR() == -1) {
+				if(from.getR() - to.getR() == 1) {
 					if(from.getC() != to.getC()) {
 						return false;
 					}
 				}
 			} else if(owner == 2) {
 				//If Piece is moving backwards check for diagonal
-				if(from.getR() - to.getR() == 1) {
+				if(from.getR() - to.getR() == -1) {
 					if(from.getC() != to.getC()) {
 						return false;
 					}
