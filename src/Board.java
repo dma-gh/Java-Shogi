@@ -34,11 +34,9 @@ public class Board {
 	public void movePiece(Square from, Square to) {
 		Piece fromPiece = from.getPiece();
 		if(fromPiece.canMove(from, to, this)) {
-			if(to.getPiece() == null) {
 				from.setPiece(null);
 				to.setPiece(null);
 				to.setPiece(fromPiece);
-			}
 		}
 	}
 	
