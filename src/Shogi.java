@@ -1,18 +1,15 @@
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 public class Shogi extends JFrame {
 
+	private static final long serialVersionUID = 6349187091886546866L; //Serial UID
 	static JPanel boardGUI = new JPanel(new GridLayout(9,9));
 	static JFrame frame = new JFrame();
 	static JButton[][] squares = new JButton[9][9];
@@ -25,7 +22,7 @@ public class Shogi extends JFrame {
 		frame.setSize(486,486);
 		frame.setTitle("Shogi");
 		frame.add(boardGUI);
-		frame.setBackground(Color.LIGHT_GRAY);
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		//Add Squares to layout
@@ -35,6 +32,7 @@ public class Shogi extends JFrame {
 				squares[r][c].setOpaque(true);
 				squares[r][c].setSize(54, 54);
 				squares[r][c].setBorder(new LineBorder(Color.BLACK));
+				squares[r][c].setBackground(Color.decode("#db9356"));
 				squares[r][c].addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						for(int r=0;r<9;r++) {
@@ -91,7 +89,7 @@ public class Shogi extends JFrame {
 						squares[r][c].setText(b.getSquare(r, c).getPiece().getSymbol());
 					} else {
 						squares[r][c].setText(b.getSquare(r, c).getPiece().getSymbol());
-						squares[r][c].setForeground(Color.BLUE);
+						squares[r][c].setForeground(Color.WHITE);
 					}
 				} else {
 					squares[r][c].setText("");
