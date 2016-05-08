@@ -21,6 +21,11 @@ public class Board {
 		//Add Kings to initial setup
 			board[0][4].setPiece(new King(1));
 			board[8][4].setPiece(new King(2));
+		//Add Gold to initial setup
+			board[0][3].setPiece(new Gold(1));
+			board[0][5].setPiece(new Gold(1));
+			board[8][3].setPiece(new Gold(1));
+			board[8][5].setPiece(new Gold(1));
 	}
 	
 	public void movePiece(Square from, Square to) {
