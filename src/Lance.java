@@ -8,24 +8,28 @@ public class Lance implements Piece {
 		if(from.getC() == to.getC()) {
 			if(owner == 2) {
 				//Check for collision and row violation if moving up 
-				if(from.getR() - to.getR() < 0) {
-					//Check squares between old and new position for pieces
-					for(int i=from.getR() + 1;i<to.getR();i++) {
-						if(b.getSquare(i, from.getC()).getPiece() != null) {
-							return false;
-						}
-					}
-				}
-			}
-			else if(owner == 1) {
-				//Check for collision and row violation if moving down 	
-				if(from.getR() - to.getR() > 0 && from.getC() == to.getC()) {
+				if(from.getR() - to.getR() > 0) {
 					//Check squares between old and new position for pieces
 					for(int i=from.getR() - 1;i>to.getR();i--) {
 						if(b.getSquare(i, from.getC()).getPiece() != null) {
 							return false;
 						}
 					}
+				} else {
+					return false;
+				}
+			}
+			if(owner == 1) {
+				//Check for collision and row violation if moving down 	
+				if(from.getR() - to.getR() < 0 && from.getC() == to.getC()) {
+					//Check squares between old and new position for pieces
+					for(int i=from.getR() + 1;i<to.getR();i++) {
+						if(b.getSquare(i, from.getC()).getPiece() != null) {
+							return false;
+						}
+					}
+				} else {
+					return false;
 				}
 			}
 			
@@ -35,7 +39,7 @@ public class Lance implements Piece {
 				}
 			}
 			
-				return true;
+			return true;
 		}
 		return false;
 	}
