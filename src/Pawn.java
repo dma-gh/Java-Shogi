@@ -8,6 +8,10 @@ public class Pawn implements Piece {
 		
 	}
 	
+	public Pawn(int owner) {
+		this.owner = owner;
+	}
+	
 	public boolean canMove(Square from, Square to, Board b) {
 		//Pawn Basic Move
 		if(owner == 1 && from.getR() - to.getR() == -1 ||
@@ -15,10 +19,6 @@ public class Pawn implements Piece {
 						return true;
 		}
 		return false;
-	}
-	
-	public Pawn(int owner) {
-		this.owner = owner;
 	}
 	
 	public String getType() {
