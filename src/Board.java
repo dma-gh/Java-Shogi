@@ -26,6 +26,9 @@ public class Board {
 			board[0][5].setPiece(new Gold(1));
 			board[8][3].setPiece(new Gold(1));
 			board[8][5].setPiece(new Gold(1));
+		//Add Rooks to initial setup
+			board[1][1].setPiece(new Rook(1));
+			board[7][7].setPiece(new Rook(2));
 	}
 	
 	public void movePiece(Square from, Square to) {
