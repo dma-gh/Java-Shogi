@@ -5,25 +5,32 @@ public class Lance implements Piece {
 	private int owner;
 	
 	public boolean canMove(Square from, Square to, Board b) {
-			//Check for collision and row violation if moving up 
-			if(owner == 1 && from.getC() == to.getC()) {
-				//Check squares between old and new position for pieces
-				for(int i=from.getR() + 1;i<to.getR();i++) {
-					if(b.getSquare(i, from.getC()).getPiece() != null) {
-						return false;
+		if(from.getC() == to.getC()) {
+			if(owner == 2) {
+				//Check for collision and row violation if moving up 
+				if(from.getR() - to.getR() < 0) {
+					//Check squares between old and new position for pieces
+					for(int i=from.getR() + 1;i<to.getR();i++) {
+						if(b.getSquare(i, from.getC()).getPiece() != null) {
+							return false;
+						}
 					}
 				}
 			}
-			//Check for collision and row violation if moving down 	
-			if(owner == 2 && from.getC() == to.getC()) {
-				//Check squares between old and new position for pieces
-				for(int i=from.getR() - 1;i>to.getR();i--) {
-					if(b.getSquare(i, from.getC()).getPiece() != null) {
-						return false;
+			else if(owner == 1) {
+				//Check for collision and row violation if moving down 	
+				if(from.getR() - to.getR() > 0 && from.getC() == to.getC()) {
+					//Check squares between old and new position for pieces
+					for(int i=from.getR() - 1;i>to.getR();i--) {
+						if(b.getSquare(i, from.getC()).getPiece() != null) {
+							return false;
+						}
 					}
 				}
 			}
 			return true;
+		}
+		return false;
 	}
 	
 	public Lance(int owner) {
