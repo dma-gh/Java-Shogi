@@ -5,8 +5,8 @@ public class King implements Piece {
 	private int owner;
 	
 	public boolean canMove(Square from, Square to, Board b) {
-		if((Math.abs(from.getC() - to.getC()) == 1) ||
-				Math.abs(from.getR() - to.getR()) == 1) {	
+		if((Math.abs(from.getC() - to.getC()) >= 1) &&
+				Math.abs(from.getR() - to.getR()) >= 1) {	
 		return true;
 		}
 		return false;
