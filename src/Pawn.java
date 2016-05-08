@@ -17,7 +17,9 @@ public class Pawn implements Piece {
 		if(owner == 1 && from.getR() - to.getR() == -1 ||
 				owner == 2 && from.getR() - to.getR() == 1) {
 					if(from.getC() == to.getC()) {
-						return true;
+						if(to.getPiece().getOwner() != from.getPiece().getOwner()) {
+							return true;
+						}
 					}
 		}
 		return false;

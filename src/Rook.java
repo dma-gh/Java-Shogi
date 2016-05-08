@@ -43,7 +43,10 @@ public class Rook implements Piece {
 				}
 			}
 		}
-		return true;
+		if(to.getPiece().getOwner() != from.getPiece().getOwner()) {
+			return true;
+		}
+		return false;
 	}
 	
 	public Rook(int owner) {
