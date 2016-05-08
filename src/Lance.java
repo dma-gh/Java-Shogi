@@ -1,5 +1,5 @@
 
-public class Lance implements Piece{
+public class Lance implements Piece {
 	private String type = "Lance";
 	private String symbol = "L";
 	private int owner;
