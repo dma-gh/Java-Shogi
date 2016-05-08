@@ -6,12 +6,23 @@ public class Gold implements Piece {
 	
 	public boolean canMove(Square from, Square to, Board b) {
 		if((Math.abs(from.getR() - to.getR()) <= 1 && 
-				(Math.abs(from.getC() - to.getC()) <= 1)) &&
-					((owner == 1 && (from.getR() - to.getR() != -1 &&
-							from.getC() == to.getC()))) || 
-					((owner == 2 && (from.getR() - to.getR() != 1 &&
-							from.getC() == to.getC())))) {
-			
+				(Math.abs(from.getC() - to.getC()) <= 1))) {
+			if(owner == 1) {
+				//If Piece is moving backwards check for diagonal
+				if(from.getR() - to.getR() == -1) {
+					if(from.getC() != to.getC()) {
+						return false;
+					}
+				}
+			} else if(owner == 2) {
+				//If Piece is moving backwards check for diagonal
+				if(from.getR() - to.getR() == 1) {
+					if(from.getC() != to.getC()) {
+						return false;
+					}
+				}
+			}
+			return true;
 		}
 		return false;
 	}
