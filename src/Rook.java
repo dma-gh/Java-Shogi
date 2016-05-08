@@ -6,7 +6,7 @@ public class Rook implements Piece {
 	
 	public boolean canMove(Square from, Square to, Board b) {
 		//Check for collision and row violation if moving up 
-		if(from.getR() - to.getR() > 0 && from.getC() == to.getC()) {
+		if(from.getR() - to.getR() < 0 && from.getC() == to.getC()) {
 			//Check squares between old and new position for pieces
 			for(int i=from.getR() + 1;i<to.getR();i++) {
 				if(b.getSquare(i, from.getC()).getPiece() != null) {
@@ -15,7 +15,7 @@ public class Rook implements Piece {
 			}
 		}
 		//Check for collision and row violation if moving down 	
-		if(from.getR() - to.getR() < 0 && from.getC() == to.getC()) {
+		if(from.getR() - to.getR() > 0 && from.getC() == to.getC()) {
 			//Check squares between old and new position for pieces
 			for(int i=from.getR() - 1;i>to.getR();i--) {
 				if(b.getSquare(i, from.getC()).getPiece() != null) {
@@ -25,7 +25,7 @@ public class Rook implements Piece {
 		}
 		
 		//Check for collision and row violation if moving left
-		if(from.getC() - to.getC() < 0 && from.getC() == to.getC()) {
+		if(from.getC() - to.getC() < 0 && from.getR() == to.getR()) {
 			//Check squares between old and new position for pieces
 			for(int i=from.getC() - 1;i>to.getC();i--) {
 				if(b.getSquare(i, from.getC()).getPiece() != null) {
@@ -35,7 +35,7 @@ public class Rook implements Piece {
 		}
 		
 		//Check for collision and row violation if moving right
-		if(from.getC() - to.getC() > 0 && from.getC() == to.getC()) {
+		if(from.getC() - to.getC() > 0 && from.getR() == to.getR()) {
 			//Check squares between old and new position for pieces
 			for(int i=from.getC() + 1;i<to.getC();i++) {
 				if(b.getSquare(i, from.getC()).getPiece() != null) {
