@@ -17,6 +17,7 @@ public class Shogi extends JFrame {
 	static JButton[][] squares = new JButton[9][9];
 	static Board b = new Board();
 	static Square lastClicked = null;
+	public static int turn = 2;
 
 	public static void main(String[] args){
 
@@ -38,13 +39,13 @@ public class Shogi extends JFrame {
 						for(int r=0;r<9;r++) {
 							for(int c=0;c<9;c++) {
 								if(e.getSource() == squares[r][c]) {
-									if(lastClicked == null) {
+									if(lastClicked == null && b.getSquare(r, c).getPiece().getOwner() == turn) {
 										if(b.getSquare(r, c).getPiece() != null) {
 											lastClicked = b.getSquare(r, c);
 											for(int i=0;i<9;i++) {
 												for(int j=0;j<9;j++) {
 													if(b.getSquare(r, c).getPiece().canMove(b.getSquare(r, c), b.getSquare(i, j), b)) {
-														squares[i][j].setText(".");
+														squares[i][j].setText(squares[i][j].getText() + ".");
 													}
 												}
 											}
@@ -52,6 +53,11 @@ public class Shogi extends JFrame {
 									} else {
 										b.movePiece(lastClicked, b.getSquare(r, c));
 										lastClicked = null;
+										if(turn == 2) {
+											turn = 1;
+										} else if(turn == 1) {
+											turn = 2;
+										}
 										updateBoard();
 									}
 								}
