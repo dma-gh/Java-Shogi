@@ -41,6 +41,13 @@ public class Shogi extends JFrame {
 									if(lastClicked == null) {
 										if(b.getSquare(r, c).getPiece() != null) {
 											lastClicked = b.getSquare(r, c);
+											for(int i=0;i<9;i++) {
+												for(int j=0;j<9;j++) {
+													if(b.getSquare(r, c).getPiece().canMove(b.getSquare(r, c), b.getSquare(i, j), b)) {
+														squares[i][j].setText(".");
+													}
+												}
+											}
 										}
 									} else {
 										b.movePiece(lastClicked, b.getSquare(r, c));
