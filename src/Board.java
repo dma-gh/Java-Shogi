@@ -31,12 +31,14 @@ public class Board {
 			board[7][7].setPiece(new Rook(2));
 	}
 	
-	public void movePiece(Square from, Square to) {
+	public void movePiece(Square from, Square to) throws Exception {
 		Piece fromPiece = from.getPiece();
 		if(fromPiece.canMove(from, to, this)) {
 				from.setPiece(null);
 				to.setPiece(null);
 				to.setPiece(fromPiece);
+		} else {
+			throw new Exception();
 		}
 	}
 	
