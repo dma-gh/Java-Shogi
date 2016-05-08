@@ -24,8 +24,8 @@ public class Board {
 		//Add Gold to initial setup
 			board[0][3].setPiece(new Gold(1));
 			board[0][5].setPiece(new Gold(1));
-			board[8][3].setPiece(new Gold(1));
-			board[8][5].setPiece(new Gold(1));
+			board[8][3].setPiece(new Gold(2));
+			board[8][5].setPiece(new Gold(2));
 		//Add Rooks to initial setup
 			board[1][1].setPiece(new Rook(1));
 			board[7][7].setPiece(new Rook(2));
