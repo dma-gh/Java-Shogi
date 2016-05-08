@@ -51,6 +51,7 @@ public class Shogi extends JFrame {
 											}
 										}
 									} else {
+										squares[r][c].setForeground(Color.BLACK);
 										b.movePiece(lastClicked, b.getSquare(r, c));
 										lastClicked = null;
 										if(turn == 2) {
