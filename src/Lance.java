@@ -28,9 +28,14 @@ public class Lance implements Piece {
 					}
 				}
 			}
-			if(to.getPiece().getOwner() != from.getPiece().getOwner()) {
-				return true;
+			
+			if(to.getPiece() != null) {
+				if(from.getPiece().getOwner() == to.getPiece().getOwner()) {
+					return false;
+				}
 			}
+			
+				return true;
 		}
 		return false;
 	}

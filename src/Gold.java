@@ -22,6 +22,13 @@ public class Gold implements Piece {
 					}
 				}
 			}
+			
+			if(to.getPiece() != null) {
+				if(from.getPiece().getOwner() == to.getPiece().getOwner()) {
+					return false;
+				}
+			}
+			
 			if(to.getPiece().getOwner() != from.getPiece().getOwner()) {
 				return true;
 			}

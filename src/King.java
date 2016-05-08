@@ -5,11 +5,15 @@ public class King implements Piece {
 	private int owner;
 	
 	public boolean canMove(Square from, Square to, Board b) {
+		if(to.getPiece() != null) {
+			if(from.getPiece().getOwner() == to.getPiece().getOwner()) {
+				return false;
+			}
+		}
+		
 		if((Math.abs(from.getC() - to.getC()) <= 1) &&
 				Math.abs(from.getR() - to.getR()) <= 1) {	
-			if(to.getPiece().getOwner() != from.getPiece().getOwner()) {
 				return true;
-			}
 		}
 		return false;
 	}
