@@ -63,6 +63,8 @@ public class Shogi extends JFrame {
 											updateBoard();
 										} catch (Exception ex) {
 											System.out.println("Invalid Move");
+											lastClicked = null;
+											updateBoard();
 										}
 									}
 								}
