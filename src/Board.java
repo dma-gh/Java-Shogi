@@ -26,6 +26,16 @@ public class Board {
 			board[0][5].setPiece(new Gold(1));
 			board[8][3].setPiece(new Gold(2));
 			board[8][5].setPiece(new Gold(2));
+		//Add Silvers to initial setup
+			board[0][2].setPiece(new Silver(1));
+			board[0][6].setPiece(new Silver(1));
+			board[8][2].setPiece(new Silver(2));
+			board[8][6].setPiece(new Silver(2));
+		//Add Knights to initial setup
+			board[0][1].setPiece(new Knight(1));
+			board[0][7].setPiece(new Knight(1));
+			board[8][1].setPiece(new Knight(2));
+			board[8][7].setPiece(new Knight(2));
 		//Add Rooks to initial setup
 			board[1][1].setPiece(new Rook(1));
 			board[7][7].setPiece(new Rook(2));
