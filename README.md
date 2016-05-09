@@ -3,7 +3,7 @@ AP Computer Science Final Project - Japanese Chess Game - David Allen<br>
 A Graphical Shogi (Japanese Chess) Game
 ##Implementation Details:
 <ul>
-<li>There are two Players.<li>
+<li>There are two Players.</li>
 <li>The Board consists of 81 Squares, 9x9.</li>
 <li>Each piece has a starting position, and will be placed there upon the start of the game.</li>
 <li>Player 1 moves first.</li>
