@@ -7,6 +7,9 @@ public class Hand {
 	
 	public Hand(int owner) {
 		this.owner = owner;
+		for(int i=0;i<38;i++) {
+			pieces.add(null);
+		}
 	}
 	
 	public Piece getPiece(int i) {
@@ -14,7 +17,12 @@ public class Hand {
 	}
 	
 	public void addPiece(Piece p) {
-		pieces.add(p);
+		for(int i=0;i<pieces.size();i++) {
+			if(pieces.get(i) == null) {
+				pieces.set(i,p);
+				break;
+			}
+		}
 	}
 	
 	public int getOwner() {
