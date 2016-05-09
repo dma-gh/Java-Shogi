@@ -3,11 +3,15 @@ AP Computer Science Final Project - Japanese Chess Game - David Allen<br>
 A Graphical Shogi (Japanese Chess) Game
 ##Implementation Details:
 <ul>
-	<li>Two-Player
-	<li>The Game will highlight available moves when a piece is clicked
-	<li>Players will use a GUI to control the Pieces
-	<li>The Game is over when a player's king is captured
-	<li>Players take turns moving their pieces until the game is over</li>
+<li>There are two Players.<li>
+<li>The Board consists of 81 Squares, 9x9.</li>
+<li>Each piece has a starting position, and will be placed there upon the start of the game.</li>
+<li>Player 1 moves first.</li>
+<li>Each piece has its own individual set of moves, and only the knight may jump over other pieces.</li>
+<li>If a piece is selected and it is the player’s turn, the available moves for that piece will be highlighted.</li>
+<li>After a Piece is captured, it is added to the hand of the player which captured the piece. The Players’ hands can be seen at the top and bottom of the screen.</li>
+<li>The game is over when a player's king is captured, the player who lost their king is the loser.</li>
+
 </ul>
 ##Code Details:
 <ul>
