@@ -25,6 +25,15 @@ public class Hand {
 		}
 	}
 	
+	public void removePiece(Piece p) {
+		for(int i=0;i<pieces.size();i++) {
+			if(pieces.get(i).getSymbol() == p.getSymbol()) {
+				pieces.set(i, null);
+				break;
+			}
+		}
+	}
+	
 	public int getOwner() {
 		return owner;
 	}
