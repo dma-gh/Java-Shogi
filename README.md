@@ -11,10 +11,18 @@ A Graphical Shogi (Japanese Chess) Game
 </ul>
 ##Code Details:
 <ul>
-	<li>Manages the Board class through a two-dimensional array of squares
-	<li>Each Piece has a class which implements the Piece class
-	<li>Each Piece has its own valid move checking method, which is used by a movePiece method in the board class
-	<li>The GUI iterates through the board after each move and prints symbols
-	<li>An ActionListener detects which piece is selected, then where it must move</li>
+<li>Board Class contains an array of Squares.</li>
+<li>Square class contains a piece and location, drop pieces are on hidden Square 100.</li>
+<li>Each Piece has a class which implements the Piece interface</li>
+<li>Each Piece class contains a canMove() boolean method, which takes the “from” square, the “to” square and the board. It then determines whether or not the move is valid.</li>
+<li>The board class contains a move method, which uses the canMove method in each piece to determine if the move is valid and make it. <li>If the move cannot be made, it throws an exception.</li> 
+<li>The GUI is a JFrame with Three JPanels.</li>
+<li>The first and third JPanel contain screens which display the held pieces by each player. (Captured Pieces)</li>
+<li>The Hand class contains an ArrayList which holds the pieces a player has captured.</li>
+<li>In the GUI, each Square is represented by a JButton. The Square’s pieces Symbol represents the Button's text.</li>
+<li>The Maximum amount of Pieces a player can hold and capture is 38, so each hand JPanel has 38 invisible buttons which become visible, and have their text changed, as Pieces are captured.</li>
+<li>Moving is handled through a lastClicked Square variable. Based on the lastClicked variable, when a Square is clicked, its Piece is either highlighted, or the previously clicked Piece is moved.</li>
+<li>When a Piece is highlighted, each Square on the Board is checked, if it is a valid move for the Piece, the square is Highlighted with a “.”</li>
+
 </ul>
 
