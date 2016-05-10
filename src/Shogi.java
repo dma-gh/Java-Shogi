@@ -190,12 +190,14 @@ public class Shogi extends JFrame {
 		}
 		for(int i=0;i<38;i++) {
 			if(p1.getPiece(i) != null) {
+				p1.getPiece(i).demote();
 				p1List[i].setText(p1.getPiece(i).getSymbol());
 				p1List[i].setVisible(true);
 			} else {
 				p1List[i].setVisible(false);
 			}
 			if(p2.getPiece(i) != null) {
+				p2.getPiece(i).demote();
 				p2List[i].setText(p2.getPiece(i).getSymbol());
 				p2List[i].setVisible(true);
 			} else {
