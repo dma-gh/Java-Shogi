@@ -3,9 +3,17 @@ public class Bishop implements Piece {
 	private String type = "Bishop";
 	private String symbol = "B";
 	private int owner;
+	private boolean promoted = false;
 
 	public boolean canMove(Square from, Square to, Board b) {
-
+		
+		if(promoted) {
+			if((Math.abs(from.getC() - to.getC()) <= 1) &&
+					Math.abs(from.getR() - to.getR()) <= 1) {	
+				return true;
+			}
+		}
+		
 		if(Math.abs(from.getR() - to.getR()) == Math.abs(from.getC() - to.getC())) {
 			//Check if moving left or right, up or down
 			int dirC = to.getC()>from.getC() ? 1 : -1;
@@ -24,6 +32,11 @@ public class Bishop implements Piece {
 			return true;
 		}
 		return false;
+	}
+
+	public void promote() {
+		promoted = true;
+		symbol = "B!";
 	}
 
 	public Bishop(int owner) {
