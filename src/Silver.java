@@ -3,8 +3,38 @@ public class Silver implements Piece {
 	private String type = "Silver";
 	private String symbol = "S";
 	private int owner;
+	private boolean promoted = false;
 
 	public boolean canMove(Square from, Square to, Board b) {
+		
+			if(promoted) {
+			//Gold movement code
+			if((Math.abs(from.getR() - to.getR()) <= 1 && 
+					(Math.abs(from.getC() - to.getC()) <= 1))) {
+				if(owner == 1) {
+					//If Piece is moving backwards check for diagonal
+					if(from.getR() - to.getR() == 1) {
+						if(from.getC() != to.getC()) {
+							return false;
+						}
+					}
+				} else if(owner == 2) {
+					//If Piece is moving backwards check for diagonal
+					if(from.getR() - to.getR() == -1) {
+						if(from.getC() != to.getC()) {
+							return false;
+						}
+					}
+				}
+				if(to.getPiece() != null) {
+					if(from.getPiece().getOwner() == to.getPiece().getOwner()) {
+						return false;
+					}
+				}
+				return true;
+			}
+			return false;
+		}
 		if((Math.abs(from.getR() - to.getR()) <= 1 && 
 				(Math.abs(from.getC() - to.getC()) <= 1))) {
 			if(owner == 1) {
@@ -37,6 +67,11 @@ public class Silver implements Piece {
 		return false;
 	}
 
+	public void promote() {
+		promoted = true;
+		symbol = "S!";
+	}
+	
 	public Silver(int owner) {
 		this.owner = owner;
 	}
