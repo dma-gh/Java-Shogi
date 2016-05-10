@@ -130,78 +130,79 @@ public class Shogi extends JFrame {
 											//Check for drop
 											if(lastClicked.getC() == 100 && lastClicked.getR() == 100) {
 												if(turn == 1) {
-													
+
 												} else {
-													
+
 												}
 											} 
-										squares[r][c].setForeground(Color.BLACK);
-										lastClicked = null;
-										if(turn == 2) {
-											turn = 1;
-											if(tmp != null) {
-												p2.addPiece(tmp);
+											squares[r][c].setForeground(Color.BLACK);
+											lastClicked = null;
+											if(turn == 2) {
+												turn = 1;
+												if(tmp != null) {
+													p2.addPiece(tmp);
+												}
+											} else if(turn == 1) {
+												turn = 2;
+												if(tmp != null) {
+													p1.addPiece(tmp);
+												}
 											}
-										} else if(turn == 1) {
-											turn = 2;
-											if(tmp != null) {
-												p1.addPiece(tmp);
-											}
+											updateBoard();
+											tmp = null;
+										} catch (Exception ex) {
+											ex.printStackTrace(System.out);
+											System.out.println("Invalid Move");
+											lastClicked = null;
+											updateBoard();
 										}
-										updateBoard();
-										tmp = null;
-									} catch (Exception ex) {
-										System.out.println("Invalid Move");
-										lastClicked = null;
-										updateBoard();
 									}
 								}
 							}
 						}
 					}
-				}
-			});
+				});
 				boardGUI.add(squares[r][c]);
-		}
-	}
-
-	updateBoard();
-	frame.setVisible(true);
-	frame.revalidate();
-	frame.repaint();
-}
-
-public static void updateBoard() {
-	for(int r=0;r<9;r++) {
-		for(int c=0;c<9;c++) {
-			if(b.getSquare(r, c).getPiece() != null) {
-				if(b.getSquare(r, c).getPiece().getOwner() == 1) {
-					squares[r][c].setText(b.getSquare(r, c).getPiece().getSymbol());
-				} else {
-					squares[r][c].setText(b.getSquare(r, c).getPiece().getSymbol());
-					squares[r][c].setForeground(Color.WHITE);
-				}
-			} else {
-				squares[r][c].setText("");
-				squares[r][c].setForeground(Color.BLACK);
 			}
 		}
+
+		updateBoard();
+		frame.setVisible(true);
+		frame.revalidate();
+		frame.repaint();
 	}
-	for(int i=0;i<38;i++) {
-		if(p1.getPiece(i) != null) {
-			p1List[i].setText(p1.getPiece(i).getSymbol());
-			p1List[i].setVisible(true);
-		} else {
-			p1List[i].setVisible(false);
+
+	public static void updateBoard() {
+		for(int r=0;r<9;r++) {
+			for(int c=0;c<9;c++) {
+				if(b.getSquare(r, c).getPiece() != null) {
+					if(b.getSquare(r, c).getPiece().getOwner() == 1) {
+						squares[r][c].setText(b.getSquare(r, c).getPiece().getSymbol());
+					} else {
+						squares[r][c].setText(b.getSquare(r, c).getPiece().getSymbol());
+						squares[r][c].setForeground(Color.WHITE);
+					}
+				} else {
+					squares[r][c].setText("");
+					squares[r][c].setForeground(Color.BLACK);
+				}
+			}
 		}
-		if(p2.getPiece(i) != null) {
-			p2List[i].setText(p2.getPiece(i).getSymbol());
-			p2List[i].setVisible(true);
-		} else {
-			p2List[i].setVisible(false);
+		for(int i=0;i<38;i++) {
+			if(p1.getPiece(i) != null) {
+				p1List[i].setText(p1.getPiece(i).getSymbol());
+				p1List[i].setVisible(true);
+			} else {
+				p1List[i].setVisible(false);
+			}
+			if(p2.getPiece(i) != null) {
+				p2List[i].setText(p2.getPiece(i).getSymbol());
+				p2List[i].setVisible(true);
+			} else {
+				p2List[i].setVisible(false);
+			}
 		}
+		frame.revalidate();
+		frame.repaint();
 	}
-	frame.revalidate();
-	frame.repaint();
-}
 }
