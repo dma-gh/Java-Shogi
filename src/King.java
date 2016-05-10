@@ -41,4 +41,7 @@ public class King implements Piece {
 	public void promote() {
 		//This piece does not promote
 	}
+	public void demote() {
+		//does not demote
+	}
 }

@@ -61,6 +61,11 @@ public class Knight implements Piece {
 		promoted = true;
 		symbol = "Kn!";
 	}
+	
+	public void demote() {
+		promoted = false;
+		symbol = "Kn";
+	}
 
 	public Knight(int owner) {
 		this.owner = owner;

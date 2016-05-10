@@ -75,6 +75,11 @@ public class Rook implements Piece {
 		promoted = true;
 		symbol = "R!";
 	}
+	
+	public void demote() {
+		promoted = false;
+		symbol = "R";
+	}
 
 	public Rook(int owner) {
 		this.owner = owner;

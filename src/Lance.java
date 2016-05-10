@@ -79,6 +79,11 @@ public class Lance implements Piece {
 		symbol = "L!";
 	}
 	
+	public void demote() {
+		promoted = false;
+		symbol = "L";
+	}
+	
 	public Lance(int owner) {
 		this.owner = owner;
 	}

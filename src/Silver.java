@@ -72,6 +72,11 @@ public class Silver implements Piece {
 		symbol = "S!";
 	}
 	
+	public void demote() {
+		promoted = false;
+		symbol = "S";
+	}
+	
 	public Silver(int owner) {
 		this.owner = owner;
 	}

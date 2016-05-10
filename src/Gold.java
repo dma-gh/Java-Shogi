@@ -55,4 +55,8 @@ public class Gold implements Piece {
 	public void promote() {
 		//this piece does not promote
 	}
+	
+	public void demote() {
+		//does not demote
+	}
 }

@@ -59,6 +59,11 @@ public class Pawn implements Piece {
 		promoted = true;
 		symbol = "P!";
 	}
+	
+	public void demote() {
+		promoted = false;
+		symbol = "P";
+	}
 
 	public String getType() {
 		return type;

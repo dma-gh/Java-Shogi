@@ -38,6 +38,11 @@ public class Bishop implements Piece {
 		promoted = true;
 		symbol = "B!";
 	}
+	
+	public void demote() {
+		promoted = false;
+		symbol = "B";
+	}
 
 	public Bishop(int owner) {
 		this.owner = owner;

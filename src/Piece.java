@@ -25,4 +25,8 @@ public interface Piece {
 	 * Promotes piece
 	 */
 	public void promote();
+	/**
+	 * Promotes piece
+	 */
+	public void demote();
 }
