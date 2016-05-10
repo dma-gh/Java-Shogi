@@ -37,4 +37,8 @@ public class King implements Piece {
 	public int getOwner() {
 		return owner;
 	}
+	
+	public void promote() {
+		//This piece does not promote
+	}
 }

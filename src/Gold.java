@@ -51,4 +51,8 @@ public class Gold implements Piece {
 	public int getOwner() {
 		return owner;
 	}
+	
+	public void promote() {
+		//this piece does not promote
+	}
 }
