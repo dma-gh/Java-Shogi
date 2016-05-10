@@ -47,11 +47,28 @@ public class Board {
 	public void movePiece(Square from, Square to) throws Exception {
 		Piece fromPiece = from.getPiece();
 		if(fromPiece.canMove(from, to, this)) {
+			//If piece is appropriate team and moving to or from promotion square
+			try {
+			if((to.getR() <= 2 && from.getPiece().getOwner() == 2 || 
+					to.getR() <= 2 && to.getPiece().getOwner() == 2) || 
+					(to.getR() >= 6 && from.getPiece().getOwner() == 1 || 
+					to.getR() >= 6 && to.getPiece().getOwner() == 1)) {
+						from.getPiece().promote();
+			}
+			
+			if((to.getR() >= 6 && from.getPiece().getOwner() == 1) || 
+					to.getR() >= 6 && to.getPiece().getOwner() == 1) {
+			}
+			} catch(Exception e) {
+				//Throws null pointer if no piece on to
+			}
+			
 			from.setPiece(null);
 			to.setPiece(null);
 			to.setPiece(fromPiece);
 		} 
-		else if(from.getC() == 100 && from.getR() == 100){
+		else if(from.getC() == 100 && from.getR() == 100 && to.getPiece() == null){
+			//Is a Drop to an open square
 			from.setPiece(null);
 			to.setPiece(null);
 			to.setPiece(fromPiece);
