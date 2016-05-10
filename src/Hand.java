@@ -34,6 +34,10 @@ public class Hand {
 		}
 	}
 	
+	public void setPiece(int index, Piece p) {
+		pieces.set(index, p);
+	}
+	
 	public int getOwner() {
 		return owner;
 	}
