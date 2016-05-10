@@ -58,6 +58,9 @@ public class Shogi extends JFrame {
 							t.setOwner(p1.getOwner());
 							s.setPiece(t);
 							lastClicked = s;
+							p1List[i].setText("");
+							p1List[i].setVisible(false);
+							p1.setPiece(i, null);
 						}
 					}
 				}
@@ -71,6 +74,9 @@ public class Shogi extends JFrame {
 							t.setOwner(p2.getOwner());
 							s.setPiece(t);
 							lastClicked = s;
+							p2List[i].setText("");
+							p2List[i].setVisible(false);
+							p2.setPiece(i, null);
 						}
 					}
 				}
