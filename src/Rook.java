@@ -3,9 +3,17 @@ public class Rook implements Piece {
 	private String type = "Rook";
 	private String symbol = "R";
 	private int owner;
+	private boolean promoted = false;
 
 	public boolean canMove(Square from, Square to, Board b) {
 
+		if(promoted) {
+			if((Math.abs(from.getC() - to.getC()) <= 1) &&
+					Math.abs(from.getR() - to.getR()) <= 1) {	
+				return true;
+			}
+		}
+		
 		if(to.getPiece() != null) {
 			if(from.getPiece().getOwner() == to.getPiece().getOwner()) {
 				return false;
@@ -61,6 +69,11 @@ public class Rook implements Piece {
 		}
 
 		return true;
+	}
+	
+	public void promote() {
+		promoted = true;
+		symbol = "R!";
 	}
 
 	public Rook(int owner) {
