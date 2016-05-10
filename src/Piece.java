@@ -21,4 +21,8 @@ public interface Piece {
 	 * @param owner Player 1 or 2
 	 */
 	public void setOwner(int owner);
+	/**
+	 * Promotes piece
+	 */
+	public void promote();
 }
