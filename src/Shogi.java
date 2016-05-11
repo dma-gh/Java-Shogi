@@ -11,18 +11,38 @@ import javax.swing.border.LineBorder;
 public class Shogi extends JFrame {
 
 	private static final long serialVersionUID = 6349187091886546866L; //Serial UID
+
+	//The JPanel that handles the visual for the board object
 	static JPanel boardGUI = new JPanel(new GridLayout(9,9));
+
+	//The JPanel that handles the visual for Player 1's hand object
 	static JPanel p1Hand = new JPanel();
+
+	//The JPanel that handles the visual for Player 2's hand object
 	static JPanel p2Hand = new JPanel();
+
+	//The Frame that's displayed. (Contains the Panels)
 	static JFrame frame = new JFrame();
+
+	//The Array of JButtons which handle the visual for the Square objects
 	static JButton[][] squares = new JButton[9][9];
+
+	//The board object
 	static Board b = new Board();
+
+	//A variable that handles which Square the player currently has selected
 	static Square lastClicked = null;
+
+	//Handles the current turn
 	public static int turn = 2;
-	public static Hand p1 = new Hand(1);
-	public static Hand p2 = new Hand(2);
-	public static JButton[] p1List = new JButton[38];
-	public static JButton[] p2List = new JButton[38];
+
+	//Array which holds the Player hands (Starts at index 1)s
+	public static Hand[] playerHands = { null, new Hand(1), new Hand(2) };
+
+	//Array which holds the JButton arrays for each player's hand visual
+	public static JButton[] playerHandsButtons[] = { null, new JButton[38], new JButton[38] };
+
+	//Open variable which handles temporary Piece holdings across classes
 	static Piece tmp;
 
 	public static void main(String[] args){
@@ -39,60 +59,37 @@ public class Shogi extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		//Add squares to hands
-		for(int i=0;i<38;i++) {
-			p1List[i] = new JButton("");
-			p2List[i] = new JButton("");
+		for(int j=1;j<=2;j++) {
+			for(int i=0;i<38;i++) {
+				playerHandsButtons[j][i] = new JButton("");
 
-			p1List[i].setOpaque(true);
-			p1List[i].setSize(54, 54);
-			//Hide line border but preserve square shape
-			p1List[i].setBorder(new LineBorder(Color.WHITE));
-			p1List[i].setBackground(Color.WHITE);
+				playerHandsButtons[j][i].setOpaque(true);
+				playerHandsButtons[j][i].setSize(54, 54);
+				//Hide line border but preserve square shape
+				playerHandsButtons[j][i].setBorder(new LineBorder(Color.WHITE));
+				playerHandsButtons[j][i].setBackground(Color.WHITE);
 
-			p1List[i].addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					for(int i=0;i<38;i++) {
-						if(e.getSource() == p1List[i]) {
-							Square s = new Square(100,100);
-							Piece t = p1.getPiece(i);
-							t.setOwner(p1.getOwner());
-							s.setPiece(t);
-							lastClicked = s;
-							p1List[i].setText("");
-							p1List[i].setVisible(false);
-							p1.setPiece(i, null);
+				final int finalJ = j;
+
+				playerHandsButtons[j][i].addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						for(int i=0;i<38;i++) {
+							if(e.getSource() == playerHandsButtons[finalJ][i]) {
+								Square s = new Square(100,100);
+								Piece t = playerHands[finalJ].getPiece(i);
+								t.setOwner(playerHands[finalJ].getOwner());
+								s.setPiece(t);
+								lastClicked = s;
+								playerHandsButtons[finalJ][i].setText("");
+								playerHandsButtons[finalJ][i].setVisible(false);
+								playerHands[finalJ].setPiece(i, null);
+							}
 						}
 					}
-				}
-			});
-			p2List[i].addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					for(int i=0;i<38;i++) {
-						if(e.getSource() == p2List[i]) {
-							Square s = new Square(100,100);
-							Piece t = p2.getPiece(i);
-							t.setOwner(p2.getOwner());
-							s.setPiece(t);
-							lastClicked = s;
-							p2List[i].setText("");
-							p2List[i].setVisible(false);
-							p2.setPiece(i, null);
-						}
-					}
-				}
-			});
+				});
 
-			p2List[i].setOpaque(true);
-			p2List[i].setSize(54, 54);
-			//Hide line border but preserve square shape
-			p2List[i].setBorder(new LineBorder(Color.WHITE));
-			p2List[i].setBackground(Color.WHITE);
-
-			p1List[i].setVisible(false);
-			p2List[i].setVisible(false);
-
-			p1Hand.add(p1List[i]);
-			p2Hand.add(p2List[i]);
+				p1Hand.add(playerHandsButtons[j][i]);
+			}
 
 		}
 
@@ -127,6 +124,11 @@ public class Shogi extends JFrame {
 												tmp = b.getSquare(r, c).getPiece();
 											}
 											b.movePiece(lastClicked, b.getSquare(r, c));
+											if(turn == 1){
+												turn = 2;
+											} else {
+												turn = 1;
+											}
 											//Check for drop
 											if(lastClicked.getC() == 100 && lastClicked.getR() == 100) {
 												if(turn == 1) {
@@ -136,18 +138,10 @@ public class Shogi extends JFrame {
 												}
 											} 
 											squares[r][c].setForeground(Color.BLACK);
-											lastClicked = null;
-											if(turn == 2) {
-												turn = 1;
-												if(tmp != null) {
-													p2.addPiece(tmp);
-												}
-											} else if(turn == 1) {
-												turn = 2;
-												if(tmp != null) {
-													p1.addPiece(tmp);
-												}
-											}
+											lastClicked = null;	
+											if(tmp != null) {
+												playerHands[turn].addPiece(tmp);
+											}	
 											updateBoard();
 											tmp = null;
 										} catch (Exception ex) {
@@ -188,23 +182,18 @@ public class Shogi extends JFrame {
 				}
 			}
 		}
-		for(int i=0;i<38;i++) {
-			if(p1.getPiece(i) != null) {
-				p1.getPiece(i).demote();
-				p1List[i].setText(p1.getPiece(i).getSymbol());
-				p1List[i].setVisible(true);
-			} else {
-				p1List[i].setVisible(false);
+		for(int j=1;j<=2;j++) {
+			for(int i=0;i<38;i++) {
+				if(playerHands[j].getPiece(i) != null) {
+					playerHands[j].getPiece(i).demote();
+					playerHandsButtons[j][i].setText(playerHands[j].getPiece(i).getSymbol());
+					playerHandsButtons[j][i].setVisible(true);
+				} else {
+					playerHandsButtons[j][i].setVisible(false);
+				}
 			}
-			if(p2.getPiece(i) != null) {
-				p2.getPiece(i).demote();
-				p2List[i].setText(p2.getPiece(i).getSymbol());
-				p2List[i].setVisible(true);
-			} else {
-				p2List[i].setVisible(false);
-			}
+			frame.revalidate();
+			frame.repaint();
 		}
-		frame.revalidate();
-		frame.repaint();
 	}
 }
