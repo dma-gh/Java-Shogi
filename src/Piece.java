@@ -59,7 +59,10 @@ public class Piece {
 	 */
 	public void promote() {
 		promoted = true;
+		//If a piece is "double promoted," don't add another "!" mark.
+		if(!symbol.substring(symbol.length() -1 ).equals("!")) {
 		symbol = symbol += "!";
+		}
 	}
 	/**
 	 * Demotes piece
