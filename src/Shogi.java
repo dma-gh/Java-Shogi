@@ -15,11 +15,8 @@ public class Shogi extends JFrame {
 	//The JPanel that handles the visual for the board object
 	static JPanel boardGUI = new JPanel(new GridLayout(9,9));
 
-	//The JPanel that handles the visual for Player 1's hand object
-	static JPanel p1Hand = new JPanel();
-
-	//The JPanel that handles the visual for Player 2's hand object
-	static JPanel p2Hand = new JPanel();
+	//The JPanel that handles the visual for the hand objects
+	static JPanel[] handPanel = {null, new JPanel(), new JPanel() };
 
 	//The Frame that's displayed. (Contains the Panels)
 	static JFrame frame = new JFrame();
@@ -46,15 +43,16 @@ public class Shogi extends JFrame {
 	static Piece tmp;
 
 	public static void main(String[] args){
+		//Set up the frame with sizes and a layout
 		frame.setLayout(new BorderLayout());
 		frame.setSize(486,600);
 		frame.setTitle("Shogi");
 		frame.add(boardGUI,BorderLayout.CENTER);
-		frame.add(p1Hand,BorderLayout.PAGE_START);
-		frame.add(p2Hand,BorderLayout.PAGE_END);
+		frame.add(handPanel[1],BorderLayout.PAGE_START);
+		frame.add(handPanel[2],BorderLayout.PAGE_END);
 		boardGUI.setSize(486, 486);
-		p1Hand.setSize(486, 57);
-		p2Hand.setSize(486,57);
+		handPanel[1].setSize(486, 57);
+		handPanel[2].setSize(486,57);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -88,7 +86,7 @@ public class Shogi extends JFrame {
 					}
 				});
 
-				p1Hand.add(playerHandsButtons[j][i]);
+				handPanel[j].add(playerHandsButtons[j][i]);
 			}
 
 		}
@@ -124,11 +122,6 @@ public class Shogi extends JFrame {
 												tmp = b.getSquare(r, c).getPiece();
 											}
 											b.movePiece(lastClicked, b.getSquare(r, c));
-											if(turn == 1){
-												turn = 2;
-											} else {
-												turn = 1;
-											}
 											//Check for drop
 											if(lastClicked.getC() == 100 && lastClicked.getR() == 100) {
 												if(turn == 1) {
@@ -141,7 +134,12 @@ public class Shogi extends JFrame {
 											lastClicked = null;	
 											if(tmp != null) {
 												playerHands[turn].addPiece(tmp);
-											}	
+											}
+											if(turn == 1){
+												turn = 2;
+											} else {
+												turn = 1;
+											}
 											updateBoard();
 											tmp = null;
 										} catch (Exception ex) {

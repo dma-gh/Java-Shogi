@@ -69,6 +69,6 @@ public class Piece {
 	 */
 	public void demote() {
 		promoted = false;
-		symbol = symbol.substring(0, symbol.length() - 2);
+		symbol = symbol.split("!")[0];
 	}
 }
