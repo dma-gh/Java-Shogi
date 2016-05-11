@@ -1,9 +1,11 @@
 
-public class Knight implements Piece {
-	private String type = "Knight";
-	private String symbol = "Kn";
-	private int owner;
-	private boolean promoted = false;
+public class Knight extends Piece {
+	
+	public Knight(int owner) {
+		super(owner);
+		setSymbol("Kn");
+		setType("Knight");
+	}
 
 	public boolean canMove(Square from, Square to, Board b) {
 			if(promoted) {
@@ -55,36 +57,6 @@ public class Knight implements Piece {
 			}
 
 			return true;
-	}
-	
-	public void promote() {
-		promoted = true;
-		symbol = "Kn!";
-	}
-	
-	public void demote() {
-		promoted = false;
-		symbol = "Kn";
-	}
-
-	public Knight(int owner) {
-		this.owner = owner;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public String getSymbol() {
-		return symbol;
-	}
-
-	public void setOwner(int owner) {
-		this.owner = owner;
-	}
-
-	public int getOwner() {
-		return owner;
 	}
 }
 
