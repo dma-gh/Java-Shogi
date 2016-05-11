@@ -1,9 +1,11 @@
 
-public class Silver implements Piece {
-	private String type = "Silver";
-	private String symbol = "S";
-	private int owner;
-	private boolean promoted = false;
+public class Silver extends Piece {
+	
+	public Silver(int owner) {
+		super(owner);
+		setSymbol("S");
+		setType("Silver");
+	}
 
 	public boolean canMove(Square from, Square to, Board b) {
 		
@@ -65,36 +67,6 @@ public class Silver implements Piece {
 			return true;
 		}
 		return false;
-	}
-
-	public void promote() {
-		promoted = true;
-		symbol = "S!";
-	}
-	
-	public void demote() {
-		promoted = false;
-		symbol = "S";
-	}
-	
-	public Silver(int owner) {
-		this.owner = owner;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public String getSymbol() {
-		return symbol;
-	}
-
-	public void setOwner(int owner) {
-		this.owner = owner;
-	}
-
-	public int getOwner() {
-		return owner;
 	}
 }
 

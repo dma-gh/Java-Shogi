@@ -1,9 +1,11 @@
 
-public class Rook implements Piece {
-	private String type = "Rook";
-	private String symbol = "R";
-	private int owner;
-	private boolean promoted = false;
+public class Rook extends Piece {
+	
+	public Rook(int owner) {
+		super(owner);
+		setSymbol("R");
+		setType("Rook");
+	}
 
 	public boolean canMove(Square from, Square to, Board b) {
 
@@ -69,35 +71,5 @@ public class Rook implements Piece {
 		}
 
 		return true;
-	}
-	
-	public void promote() {
-		promoted = true;
-		symbol = "R!";
-	}
-	
-	public void demote() {
-		promoted = false;
-		symbol = "R";
-	}
-
-	public Rook(int owner) {
-		this.owner = owner;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public String getSymbol() {
-		return symbol;
-	}
-
-	public void setOwner(int owner) {
-		this.owner = owner;
-	}
-
-	public int getOwner() {
-		return owner;
 	}
 }
