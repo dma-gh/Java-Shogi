@@ -1,9 +1,11 @@
 
-public class Bishop implements Piece {
-	private String type = "Bishop";
-	private String symbol = "B";
-	private int owner;
-	private boolean promoted = false;
+public class Bishop extends Piece {
+	
+	public Bishop(int owner) {
+		super(owner);
+		setSymbol("B");
+		setType("Bishop");
+	}
 
 	public boolean canMove(Square from, Square to, Board b) {
 		
@@ -32,36 +34,6 @@ public class Bishop implements Piece {
 			return true;
 		}
 		return false;
-	}
-
-	public void promote() {
-		promoted = true;
-		symbol = "B!";
-	}
-	
-	public void demote() {
-		promoted = false;
-		symbol = "B";
-	}
-
-	public Bishop(int owner) {
-		this.owner = owner;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public String getSymbol() {
-		return symbol;
-	}
-
-	public void setOwner(int owner) {
-		this.owner = owner;
-	}
-
-	public int getOwner() {
-		return owner;
 	}
 }
 

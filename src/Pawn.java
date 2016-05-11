@@ -1,12 +1,10 @@
 
-public class Pawn implements Piece {
-	private String type = "Pawn";
-	private String symbol = "P";
-	private int owner;
-	private boolean promoted = false;
+public class Pawn extends Piece {
 
 	public Pawn(int owner) {
-		this.owner = owner;
+		super(owner);
+		setSymbol("P");
+		setType("Pawn");
 	}
 
 	public boolean canMove(Square from, Square to, Board b) {
@@ -53,31 +51,5 @@ public class Pawn implements Piece {
 		}
 
 		return false;
-	}
-	
-	public void promote() {
-		promoted = true;
-		symbol = "P!";
-	}
-	
-	public void demote() {
-		promoted = false;
-		symbol = "P";
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public String getSymbol() {
-		return symbol;
-	}
-
-	public void setOwner(int owner) {
-		this.owner = owner;
-	}
-
-	public int getOwner() {
-		return owner;
 	}
 }

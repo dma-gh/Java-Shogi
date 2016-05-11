@@ -1,9 +1,11 @@
 
-public class Lance implements Piece {
-	private String type = "Lance";
-	private String symbol = "L";
-	private int owner;
-	private boolean promoted = false;
+public class Lance extends Piece {
+	
+	public Lance(int owner) {
+		super(owner);
+		setSymbol("L");
+		setType("Lance");
+	}
 	
 	public boolean canMove(Square from, Square to, Board b) {
 		
@@ -74,33 +76,5 @@ public class Lance implements Piece {
 		}
 		return false;
 	}
-	public void promote() {
-		promoted = true;
-		symbol = "L!";
-	}
-	
-	public void demote() {
-		promoted = false;
-		symbol = "L";
-	}
-	
-	public Lance(int owner) {
-		this.owner = owner;
-	}
-	
-	public String getType() {
-		return type;
-	}
-	
-	public String getSymbol() {
-		return symbol;
-	}
-	
-	public void setOwner(int owner) {
-		this.owner = owner;
-	}
-	
-	public int getOwner() {
-		return owner;
-	}
+
 }
