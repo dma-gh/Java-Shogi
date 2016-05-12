@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Hand {
 
-	private ArrayList<Piece> pieces = new ArrayList<>();
+	private ArrayList<Piece> pieces = new ArrayList<Piece>();
 	private int owner;
 	
 	public Hand(int owner) {
