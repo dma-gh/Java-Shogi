@@ -33,14 +33,8 @@ public class Shogi extends JFrame {
 	//Handles the current turn
 	public static int turn = 2;
 
-	//Array which holds the Player hands (Starts at index 1)s
-	public static Hand[] playerHands = { null, new Hand(1), new Hand(2) };
-
 	//Array which holds the JButton arrays for each player's hand visual
 	public static JButton[] playerHandsButtons[] = { null, new JButton[38], new JButton[38] };
-
-	//Open variable which handles temporary Piece holdings across classes
-	static Piece tmp;
 
 	public static void main(String[] args){
 		//Set up the frame with sizes and a layout
@@ -74,13 +68,13 @@ public class Shogi extends JFrame {
 						for(int i=0;i<38;i++) {
 							if(e.getSource() == playerHandsButtons[finalJ][i]) {
 								Square s = new Square(100,100);
-								Piece t = playerHands[finalJ].getPiece(i);
-								t.setOwner(playerHands[finalJ].getOwner());
+								Piece t = b.getHand(finalJ).getPiece(i);
+								t.setOwner(b.getHand(finalJ).getOwner());
 								s.setPiece(t);
 								lastClicked = s;
 								playerHandsButtons[finalJ][i].setText("");
 								playerHandsButtons[finalJ][i].setVisible(false);
-								playerHands[finalJ].setPiece(i, null);
+								b.getHand(finalJ).setPiece(i, null);
 							}
 						}
 					}
@@ -107,7 +101,6 @@ public class Shogi extends JFrame {
 									if(lastClicked == null && b.getSquare(r, c).getPiece().getOwner() == turn) {
 										if(b.getSquare(r, c).getPiece() != null) {
 											lastClicked = b.getSquare(r, c);
-											tmp = null;
 											for(int i=0;i<9;i++) {
 												for(int j=0;j<9;j++) {
 													if(b.getSquare(r, c).getPiece().canMove(b.getSquare(r, c), b.getSquare(i, j), b)) {
@@ -118,30 +111,15 @@ public class Shogi extends JFrame {
 										}
 									} else {
 										try {
-											if(b.getSquare(r, c).getPiece() != null) {
-												tmp = b.getSquare(r, c).getPiece();
-											}
 											b.movePiece(lastClicked, b.getSquare(r, c));
-											//Check for drop
-											if(lastClicked.getC() == 100 && lastClicked.getR() == 100) {
-												if(turn == 1) {
-
-												} else {
-
-												}
-											} 
 											squares[r][c].setForeground(Color.BLACK);
 											lastClicked = null;	
-											if(tmp != null) {
-												playerHands[turn].addPiece(tmp);
-											}
 											if(turn == 1){
 												turn = 2;
 											} else {
 												turn = 1;
 											}
 											updateBoard();
-											tmp = null;
 										} catch (Exception ex) {
 											ex.printStackTrace(System.out);
 											System.out.println("Invalid Move");
@@ -182,9 +160,9 @@ public class Shogi extends JFrame {
 		}
 		for(int j=1;j<=2;j++) {
 			for(int i=0;i<38;i++) {
-				if(playerHands[j].getPiece(i) != null) {
-					playerHands[j].getPiece(i).demote();
-					playerHandsButtons[j][i].setText(playerHands[j].getPiece(i).getSymbol());
+				if(b.getHand(j).getPiece(i) != null) {
+					b.getHand(j).getPiece(i).demote();
+					playerHandsButtons[j][i].setText(b.getHand(j).getPiece(i).getSymbol());
 					playerHandsButtons[j][i].setVisible(true);
 				} else {
 					playerHandsButtons[j][i].setVisible(false);
