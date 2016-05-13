@@ -45,7 +45,7 @@ public class Shogi extends JFrame {
 		frame.add(handPanel[1],BorderLayout.PAGE_START);
 		frame.add(handPanel[2],BorderLayout.PAGE_END);
 		boardGUI.setSize(486, 486);
-		handPanel[1].setSize(486, 57);
+		handPanel[1].setSize(486,57);
 		handPanel[2].setSize(486,57);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,14 +67,16 @@ public class Shogi extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						for(int i=0;i<38;i++) {
 							if(e.getSource() == playerHandsButtons[finalJ][i]) {
-								Square s = new Square(100,100);
-								Piece t = b.getHand(finalJ).getPiece(i);
-								t.setOwner(b.getHand(finalJ).getOwner());
-								s.setPiece(t);
-								lastClicked = s;
-								playerHandsButtons[finalJ][i].setText("");
-								playerHandsButtons[finalJ][i].setVisible(false);
-								b.getHand(finalJ).setPiece(i, null);
+								if(b.getHand(finalJ).getPiece(i).getOwner() != turn) {
+									Square s = new Square(100,100);
+									Piece t = b.getHand(finalJ).getPiece(i);
+									t.setOwner(b.getHand(finalJ).getOwner());
+									s.setPiece(t);
+									lastClicked = s;
+									playerHandsButtons[finalJ][i].setText("");
+									playerHandsButtons[finalJ][i].setVisible(false);
+									b.getHand(finalJ).setPiece(i, null);
+								}
 							}
 						}
 					}
@@ -111,7 +113,7 @@ public class Shogi extends JFrame {
 										}
 									} else {
 										try {
-											b.movePiece(lastClicked, b.getSquare(r, c));
+											b.movePiece(lastClicked, b.getSquare(r, c), turn);
 											squares[r][c].setForeground(Color.BLACK);
 											lastClicked = null;	
 											if(turn == 1){
