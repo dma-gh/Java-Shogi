@@ -1,6 +1,9 @@
 public class Board {
 	private Square[][] board = new Square[9][9];
 
+	//Array which holds the Player hands (Starts at index 1)s
+	private Hand[] playerHands = { null, new Hand(1), new Hand(2) };
+
 	public Board() {
 		//Add Squares
 		for(int r=0;r<board.length;r++) {
@@ -63,6 +66,13 @@ public class Board {
 				//Throws null pointer if no piece on to
 			}
 			
+			if(to.getPiece() != null) {
+				//Is capturing opponent's piece
+				if(from.getPiece().getOwner() != to.getPiece().getOwner()) {
+					playerHands[from.getPiece().getOwner()].addPiece(to.getPiece());
+				}	
+			}
+			
 			from.setPiece(null);
 			to.setPiece(null);
 			to.setPiece(fromPiece);
@@ -81,6 +91,10 @@ public class Board {
 
 	public Square getSquare(int r, int c) {
 		return board[r][c];
+	}
+	
+	public Hand getHand(int i) {
+		return playerHands[i];
 	}
 
 	public String toString() {
