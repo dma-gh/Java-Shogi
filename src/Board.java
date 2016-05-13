@@ -47,52 +47,58 @@ public class Board {
 		board[7][1].setPiece(new Bishop(2));
 	}
 
-	public void movePiece(Square from, Square to) throws Exception {
+	public void movePiece(Square from, Square to, int turn) throws Exception {
 		Piece fromPiece = from.getPiece();
-		if(fromPiece.canMove(from, to, this)) {
-			//If piece is appropriate team and moving to or from promotion square
-			try {
-			if(to.getR() <= 2 && from.getPiece().getOwner() == 2 || 
-					to.getR() <= 2 && from.getPiece().getOwner() == 2) {
+		if(fromPiece.getOwner() == turn) {
+			if(fromPiece.canMove(from, to, this)) {
+				//If piece is appropriate team and moving to or from promotion square
+				try {
+					if(to.getR() <= 2 && from.getPiece().getOwner() == 2 || 
+							to.getR() <= 2 && from.getPiece().getOwner() == 2) {
 						from.getPiece().promote();
-			}
-			
-			if((to.getR() >= 6 && from.getPiece().getOwner() == 1) || 
-					to.getR() >= 6 && from.getPiece().getOwner() == 1) {
+					}
+
+					if((to.getR() >= 6 && from.getPiece().getOwner() == 1) || 
+							to.getR() >= 6 && from.getPiece().getOwner() == 1) {
 						from.getPiece().promote();
+					}
+
+				} catch(Exception e) {
+					//Throws null pointer if no piece on to
+				}
+
+				if(to.getPiece() != null) {
+					//Is capturing opponent's piece
+					if(from.getPiece().getOwner() != to.getPiece().getOwner()) {
+						playerHands[from.getPiece().getOwner()].addPiece(to.getPiece());
+					}	
+				}
+
+				from.setPiece(null);
+				to.setPiece(null);
+				to.setPiece(fromPiece);
+			} 
+			else if(from.getC() == 100 && from.getR() == 100){
+				if(to.getPiece() == null) {
+					//Is a Drop to an open square
+					fromPiece.demote();
+					from.setPiece(null);
+					to.setPiece(null);
+					to.setPiece(fromPiece);
+				}
+			} 
+			else {
+				throw new Exception();
 			}
-			
-			} catch(Exception e) {
-				//Throws null pointer if no piece on to
-			}
-			
-			if(to.getPiece() != null) {
-				//Is capturing opponent's piece
-				if(from.getPiece().getOwner() != to.getPiece().getOwner()) {
-					playerHands[from.getPiece().getOwner()].addPiece(to.getPiece());
-				}	
-			}
-			
-			from.setPiece(null);
-			to.setPiece(null);
-			to.setPiece(fromPiece);
-		} 
-		else if(from.getC() == 100 && from.getR() == 100 && to.getPiece() == null){
-			//Is a Drop to an open square
-			fromPiece.demote();
-			from.setPiece(null);
-			to.setPiece(null);
-			to.setPiece(fromPiece);
-		} 
-		else {
-			throw new Exception();
+		} else {
+				throw new Exception();
 		}
 	}
 
 	public Square getSquare(int r, int c) {
 		return board[r][c];
 	}
-	
+
 	public Hand getHand(int i) {
 		return playerHands[i];
 	}
