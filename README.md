@@ -10,7 +10,8 @@ A Graphical Shogi (Japanese Chess) Game
 <li>Each piece has its own individual set of moves, and only the knight may jump over other pieces.</li>
 <li>If a piece is selected and it is the player’s turn, the available moves for that piece will be highlighted.</li>
 <li>After a Piece is captured, it is added to the hand of the player which captured the piece. The Players’ hands can be seen at the top and bottom of the screen.</li>
-<li>The game is over when a player's king is captured, the player who lost their king is the loser.</li>
+<li>The game is over when a player's king is captured, the player who 
+captured their opponent's king is the winner.</li>
 
 </ul>
 ##Code Details:
