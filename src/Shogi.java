@@ -105,7 +105,8 @@ public class Shogi extends JFrame {
 											lastClicked = b.getSquare(r, c);
 											for(int i=0;i<9;i++) {
 												for(int j=0;j<9;j++) {
-													if(b.getSquare(r, c).getPiece().canMove(b.getSquare(r, c), b.getSquare(i, j), b)) {
+													if(b.getSquare(r, c).getPiece().canMove(b.getSquare(r, c),
+															b.getSquare(i, j), b)) {
 														squares[i][j].setText(squares[i][j].getText() + ".");
 													}
 												}

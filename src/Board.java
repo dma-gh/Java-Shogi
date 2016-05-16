@@ -1,3 +1,5 @@
+import javax.swing.JOptionPane;
+
 public class Board {
 	private Square[][] board = new Square[9][9];
 
@@ -68,6 +70,11 @@ public class Board {
 				}
 
 				if(to.getPiece() != null) {
+					if(to.getPiece().getType().equals("King")) {
+						JOptionPane.showMessageDialog(null, "Player " + from.getPiece().getOwner() + " wins!",
+								"Game Over", JOptionPane.INFORMATION_MESSAGE);
+						System.exit(0);
+					}
 					//Is capturing opponent's piece
 					if(from.getPiece().getOwner() != to.getPiece().getOwner()) {
 						playerHands[from.getPiece().getOwner()].addPiece(to.getPiece());
@@ -85,6 +92,9 @@ public class Board {
 					from.setPiece(null);
 					to.setPiece(null);
 					to.setPiece(fromPiece);
+				} else {
+					playerHands[from.getPiece().getOwner()].addPiece(from.getPiece());
+					throw new Exception();
 				}
 			} 
 			else {
