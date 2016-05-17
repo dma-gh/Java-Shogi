@@ -65,8 +65,10 @@ public class Shogi extends JFrame {
 
 				playerHandsButtons[j][i].addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						System.out.println("Clicked piece");
 						for(int i=0;i<38;i++) {
 							if(e.getSource() == playerHandsButtons[finalJ][i]) {
+								System.out.println("Clicked and found piece");
 								if(b.getHand(finalJ).getPiece(i).getOwner() != turn) {
 									Square s = new Square(100,100);
 									Piece t = b.getHand(finalJ).getPiece(i);
@@ -100,7 +102,11 @@ public class Shogi extends JFrame {
 						for(int r=0;r<9;r++) {
 							for(int c=0;c<9;c++) {
 								if(e.getSource() == squares[r][c]) {
-									if(lastClicked == null && b.getSquare(r, c).getPiece().getOwner() == turn) {
+									int x = 0;
+									try {		
+										x = b.getSquare(r, c).getPiece().getOwner();
+									} catch(Exception e1) {}
+									if(lastClicked == null && x == turn) {
 										if(b.getSquare(r, c).getPiece() != null) {
 											lastClicked = b.getSquare(r, c);
 											for(int i=0;i<9;i++) {

@@ -87,13 +87,39 @@ public class Board {
 			} 
 			else if(from.getC() == 100 && from.getR() == 100){
 				if(to.getPiece() == null) {
+					//If drop row has no pawns
+					if(from.getPiece().getSymbol().equals("P")) {
+						for(int i = 0;i<9;i++) {
+							if(board[i][to.getC()].getPiece() != null) {
+								if(board[i][to.getC()].getPiece().getType().equals("Pawn")) {
+									Piece p = from.getPiece();
+									int x = p.getOwner();
+									if(fromPiece.getOwner() == 1) {
+										p.setOwner(2);
+									} else {
+										p.setOwner(1);
+									}
+									System.out.println(p.getOwner());
+									playerHands[x].addPiece(p);
+									throw new Exception();
+								}
+							}
+						}
+					}
 					//Is a Drop to an open square
 					fromPiece.demote();
 					from.setPiece(null);
 					to.setPiece(null);
 					to.setPiece(fromPiece);
 				} else {
-					playerHands[from.getPiece().getOwner()].addPiece(from.getPiece());
+					Piece p = from.getPiece();
+					int x = p.getOwner();
+					if(fromPiece.getOwner() == 1) {
+						p.setOwner(2);
+					} else {
+						p.setOwner(1);
+					}
+					playerHands[x].addPiece(p);
 					throw new Exception();
 				}
 			} 
@@ -101,7 +127,7 @@ public class Board {
 				throw new Exception();
 			}
 		} else {
-				throw new Exception();
+			throw new Exception();
 		}
 	}
 
