@@ -93,9 +93,14 @@ public class Board {
 							if(board[i][to.getC()].getPiece() != null) {
 								if(board[i][to.getC()].getPiece().getType().equals("Pawn")) {
 									Piece p = from.getPiece();
-									p.setOwner(fromPiece.getOwner());
+									int x = p.getOwner();
+									if(fromPiece.getOwner() == 1) {
+										p.setOwner(2);
+									} else {
+										p.setOwner(1);
+									}
 									System.out.println(p.getOwner());
-									playerHands[from.getPiece().getOwner()].addPiece(p);
+									playerHands[x].addPiece(p);
 									throw new Exception();
 								}
 							}
@@ -107,7 +112,14 @@ public class Board {
 					to.setPiece(null);
 					to.setPiece(fromPiece);
 				} else {
-					playerHands[from.getPiece().getOwner()].addPiece(fromPiece);
+					Piece p = from.getPiece();
+					int x = p.getOwner();
+					if(fromPiece.getOwner() == 1) {
+						p.setOwner(2);
+					} else {
+						p.setOwner(1);
+					}
+					playerHands[x].addPiece(p);
 					throw new Exception();
 				}
 			} 
