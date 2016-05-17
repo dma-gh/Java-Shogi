@@ -91,7 +91,8 @@ public class Board {
 					if(from.getPiece().getSymbol().equals("P")) {
 						for(int i = 0;i<9;i++) {
 							if(board[i][to.getC()].getPiece() != null) {
-								if(board[i][to.getC()].getPiece().getType().equals("Pawn")) {
+								if(board[i][to.getC()].getPiece().getType().equals("Pawn") &&
+										board[i][to.getC()].getPiece().getOwner() == from.getPiece().getOwner()) {
 									Piece p = from.getPiece();
 									int x = p.getOwner();
 									if(fromPiece.getOwner() == 1) {
