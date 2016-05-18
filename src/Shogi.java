@@ -36,11 +36,11 @@ public class Shogi extends JFrame {
 	//Array which holds the JButton arrays for each player's hand visual
 	public static JButton[] playerHandsButtons[] = { null, new JButton[38], new JButton[38] };
 
-	public static void main(String[] args){
+	public Shogi() {
 		//Set up the frame with sizes and a layout
 		frame.setLayout(new BorderLayout());
 		frame.setSize(486,600);
-		frame.setTitle("Shogi");
+		frame.setTitle("Shogi Game");
 		frame.add(boardGUI,BorderLayout.CENTER);
 		frame.add(handPanel[1],BorderLayout.PAGE_START);
 		frame.add(handPanel[2],BorderLayout.PAGE_END);
@@ -65,10 +65,8 @@ public class Shogi extends JFrame {
 
 				playerHandsButtons[j][i].addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						System.out.println("Clicked piece");
 						for(int i=0;i<38;i++) {
 							if(e.getSource() == playerHandsButtons[finalJ][i]) {
-								System.out.println("Clicked and found piece");
 								if(b.getHand(finalJ).getPiece(i).getOwner() != turn) {
 									Square s = new Square(100,100);
 									Piece t = b.getHand(finalJ).getPiece(i);
