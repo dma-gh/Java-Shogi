@@ -25,6 +25,8 @@ public class LaunchScreen {
 		content.add(newGame);
 		content.add(about);
 		content.add(license);
+		launchScreen.add(content);
+		launchScreen.setVisible(true);
 		//setup button listeners to do what they say they do
 		newGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -56,7 +58,7 @@ public class LaunchScreen {
 			}
 		});
 
-		launchScreen.add(content);
-		launchScreen.setVisible(true);
+		launchScreen.revalidate();
+		launchScreen.repaint();
 	}
 }
