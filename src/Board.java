@@ -51,7 +51,8 @@ public class Board {
 
 	public void movePiece(Square from, Square to, int turn) throws Exception {
 		Piece fromPiece = from.getPiece();
-		if(fromPiece.getOwner() == turn) {
+		//make sure moving player is on correct turn, and is moving to a different square
+		if(fromPiece.getOwner() == turn && (from.getC() != to.getC() || from.getR() != to.getR())) {
 			if(fromPiece.canMove(from, to, this)) {
 				//If piece is appropriate team and moving to or from promotion square
 				try {
