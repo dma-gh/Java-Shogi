@@ -11,7 +11,7 @@ public class LaunchScreen {
 
 	public static void setupFrame() {
 		//Frame and content panel
-		JFrame launchScreen = new JFrame();	
+		final JFrame launchScreen = new JFrame();	
 		JPanel content = new JPanel();
 		//Buttons
 		JButton newGame = new JButton("New Game");
@@ -31,8 +31,7 @@ public class LaunchScreen {
 		newGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Create a new game
-				Shogi game = new Shogi();
-				game.setVisible(true);
+				new Shogi();
 			}
 		});
 
