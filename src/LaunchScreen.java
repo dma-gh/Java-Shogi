@@ -32,6 +32,7 @@ public class LaunchScreen {
 			public void actionPerformed(ActionEvent e) {
 				//Create a new game
 				new Shogi();
+				launchScreen.dispose();
 			}
 		});
 
