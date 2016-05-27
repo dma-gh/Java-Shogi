@@ -86,10 +86,14 @@ public class Board {
 				to.setPiece(null);
 				to.setPiece(fromPiece);
 			} 
+			//100 is the temporary square that indicates the piece is from a drop
+			//if this is a drop
 			else if(from.getC() == 100 && from.getR() == 100){
+				//null check to avoid pointless exceptions
 				if(to.getPiece() == null) {
 					//If drop row has no pawns
 					if(from.getPiece().getSymbol().equals("P")) {
+						//handle pawn special rule, (can only be dropped in a row with no friendly pawns)
 						for(int i = 0;i<9;i++) {
 							if(board[i][to.getC()].getPiece() != null) {
 								if(board[i][to.getC()].getPiece().getType().equals("Pawn") &&
@@ -125,6 +129,7 @@ public class Board {
 					throw new Exception();
 				}
 			} 
+			//If the move is invalid, throw an exception to let the calling class know the move failed
 			else {
 				throw new Exception();
 			}
@@ -133,14 +138,26 @@ public class Board {
 		}
 	}
 
+	/**
+	 * Square access method
+	 * @param r Row to get Square from
+	 * @param c Column to get Square from
+	 * @return Requested Square
+	 */
 	public Square getSquare(int r, int c) {
 		return board[r][c];
 	}
 
+	/**
+	 * Hand access method
+	 * @param i Player to get hand from
+	 * @return Player hand object
+	 */
 	public Hand getHand(int i) {
 		return playerHands[i];
 	}
 
+	//Prints board into stdout
 	public String toString() {
 		String ret = "";
 		for(int r=0;r<board.length;r++) {
