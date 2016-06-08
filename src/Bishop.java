@@ -18,8 +18,8 @@ public class Bishop extends Piece {
 		
 		if(Math.abs(from.getR() - to.getR()) == Math.abs(from.getC() - to.getC())) {
 			//Check if moving left or right, up or down
-			int dirC = to.getC()>from.getC() ? 1 : -1;
-			int dirR = to.getR()>from.getR() ? 1 : -1;
+			int dirC = to.getC() > from.getC() ? 1 : -1;
+			int dirR = to.getR() > from.getR() ? 1 : -1;
 			for (int i=1;i<Math.abs(to.getC()-from.getC());i++) {
 				if (b.getSquare(from.getR()+i*dirR,from.getC()+i*dirC).getPiece() != null) {
 					return false;
